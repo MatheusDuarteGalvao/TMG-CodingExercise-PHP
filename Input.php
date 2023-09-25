@@ -1,36 +1,102 @@
 <?php
-abstract class Input {
-    protected $_name;
-    protected $_label;
-    protected $_initVal;
+class Input
+{
 
-    abstract public function validate();
-    abstract protected function _renderSetting();
+    /**
+     * Input type
+     * @var string
+     */
+    protected $type;
 
-    public function __construct($name, $label, $initVal) {
-        //
+    /**
+     * Input name
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * Input value
+     * @var string
+     */
+    protected $value;
+
+    /**
+     * Input label
+     * @var string
+     */
+    protected $label;
+
+    /**
+     * Required status on the input
+     * @var bool
+     */
+    protected $required;
+
+    public function __construct($type, $name, $label, $value)
+    {
+        $this->type     = $type;
+        $this->name     = $name;
+        $this->value    = $value;
+        $this->label    = $label;
+        $this->required = false;
     }
 
     /**
-     * returns the name of this input
+     * Method responsible for returning the input name
+     * @return string
      */
-    public function name() {
-        // TODO
-    }
-
-
-    /**
-     *  renders a row in the form for this input. All inputs have a label on the left, and an area on the right where the actual
-     *  html form element is displayed (such as a text box, radio button, select, etc)
-     */
-    public function render() {
-        // TODO
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
-     * returns the current value managed by this input
+     * Method responsible for returning the input value
+     * @return string
      */
-    public function getValue() {
-        // TODO
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Method responsible for returning the input label
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Method responsible for setting the required status for the input
+     * @return void
+     */
+    public function setRequired($required = true)
+    {
+        $this->required = $required;
+    }
+
+    /**
+     * Method responsible for validate the required status for the input
+     * @return void
+     */
+    public function isRequired()
+    {
+        return $this->required == true;
+    }
+
+    /**
+     * Method responsible for rendering the HTML for the form inpunt element
+     * @return string
+     */
+    public function render()
+    {
+        return "
+            <div class='form-group'>
+                <label for='{$this->name}'>{$this->label}:</label>
+                <input type='{$this->type}' id='{$this->name}' name='{$this->name}' value='{$this->value}'>
+            </div>
+        ";
     }
 }
