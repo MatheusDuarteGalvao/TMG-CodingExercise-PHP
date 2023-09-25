@@ -10,19 +10,19 @@ Follow these steps to run the application locally:
 
    Clone this repository to your local machine using Git:
 
-   ~~~git clone <repository_url>~~~
+   `git clone <repository_url>`
 
 2. **Navigate to the Project Directory:**
 
     Change your current directory to the project's root folder:
 
-    ~~~cd php-form-application~~~
+    `cd php-form-application`
 
 3. **Start a PHP Development Server:**
 
     Use PHP's built-in web server to run the application. Open a terminal and run the following command:
 
-    ~~~php -S localhost:8000~~~
+    `php -S localhost:8000`
 
 4. **Access the Application:**
 
