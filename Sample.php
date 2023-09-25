@@ -95,11 +95,14 @@
         $form->addSubmitButton('Register');
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            if ($form->validate()) {
-                // display user info
-                $firstName = $form->getValue("firstname");
-                $lastName = $form->getValue("lastname");
-                echo $firstName . " " . $lastName;
+
+            $form->validate();
+
+            if ($form->getErrors()) {
+                // Display validation errors
+                foreach ($form->getErrors() as $error) {
+                    echo "<p>$error</p>";
+                }
             } else {
                 $form->display();
             }

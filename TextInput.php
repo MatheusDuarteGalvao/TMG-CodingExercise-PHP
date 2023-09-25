@@ -12,4 +12,16 @@ class TextInput extends Input
     {
         parent::__construct('text', $name, $label, $value);
     }
+
+    /**
+     * Method responsible for validation
+     * @return boolean
+     */
+    public function isValid()
+    {
+        if (empty($this->value) && !preg_match('/^[a-zA-Z0-9]+$/', $this->value))
+            return false;
+
+        return true;
+    }
 }

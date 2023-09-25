@@ -27,6 +27,12 @@ class Form
     private $method;
 
     /**
+     * Form errors
+     * @var string
+     */
+    private $errors = [];
+
+    /**
      * Constructor method
      * @param string $action
      * @param string $method
@@ -73,20 +79,26 @@ class Form
      */
     public function validate()
     {
-        $errors = [];
+        $this->errors = [];
 
         foreach ($this->fields as $field) {
             if ($field instanceof Input) {
-                $value = $this->getValue($field->getName());
-
-                // Perform validation logic here
-                if ($field->isRequired() && !strlen($value)) {
-                    $errors[] = "{$field->getLabel()} is required.";
+                if (!$field->isValid()) {
+                    $this->errors[] = "{$field->getLabel()} is invalid.";
                 }
             }
         }
 
-        return $errors;
+        return empty($this->errors);
+    }
+
+    /**
+     * Method responsible for return the errors from the form
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
     }
 
     /**

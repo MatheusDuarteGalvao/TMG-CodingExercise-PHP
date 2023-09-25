@@ -87,6 +87,15 @@ class Input
     }
 
     /**
+     * Method responsible for validation
+     * @return boolean
+     */
+    public function isValid()
+    {
+        return !empty($this->value);
+    }
+
+    /**
      * Method responsible for rendering the HTML for the form inpunt element
      * @return string
      */
