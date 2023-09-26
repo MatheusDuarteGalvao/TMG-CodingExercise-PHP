@@ -19,7 +19,10 @@ class TextInput extends Input
      */
     public function isValid()
     {
-        if (empty($this->value) && !preg_match('/^[a-zA-Z0-9]+$/', $this->value))
+        if ($this->isRequired() && empty($this->getValue()))
+            return false;
+
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $this->getValue()))
             return false;
 
         return true;

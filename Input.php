@@ -65,7 +65,7 @@ class Input
      */
     public function getLabel()
     {
-        return $this->value;
+        return $this->label;
     }
 
     /**
@@ -75,6 +75,15 @@ class Input
     public function setRequired($required = true)
     {
         $this->required = $required;
+    }
+
+    /**
+     * Method responsible for setting the value for the input
+     * @return void
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 
     /**

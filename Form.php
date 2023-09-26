@@ -102,6 +102,15 @@ class Form
     }
 
     /**
+     * Method responsible for return the fields from the form
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
      * Method responsible for return the value of the input by name
      * @param string $name
      * @return string|null

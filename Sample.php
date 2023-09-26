@@ -89,12 +89,24 @@
         require 'Form.php';
         require 'TextInput.php';
 
+        $firstNameInput = new TextInput("firstname", "First Name", "Bruce");
+        $firstNameInput->setRequired();
+
+        $lastNameInput = new TextInput("lastname", "Last Name", "Wayne");
+        $lastNameInput->setRequired();
+
         $form = new Form();
-        $form->addInput(new TextInput("firstname", "First Name", "Bruce"));
-        $form->addInput(new TextInput("lastname", "Last Name", "Wayne"));
+        $form->addInput($firstNameInput);
+        $form->addInput($lastNameInput);
         $form->addSubmitButton('Register');
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            foreach ($form->getFields() as $field) {
+                if (isset($_POST[$field->getName()])) {
+                    $field->setValue($_POST[$field->getName()]);
+                }
+            }
 
             $form->validate();
 
